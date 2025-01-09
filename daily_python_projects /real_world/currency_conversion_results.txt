@@ -1,0 +1,4 @@
+Base currency: USD
+Amount: 10.0 USD
+10.0 USD = 7.99 GBP
+Timestamp: 2025-01-02 13:26:10.212925
