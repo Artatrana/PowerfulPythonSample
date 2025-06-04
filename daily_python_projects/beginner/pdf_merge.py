@@ -3,10 +3,10 @@ from PyPDF2 import PdfReader, PdfWriter
 
 def file_merge():
     merger = PdfMerger()
-    merger.append("pdf_file/Artatrana_Cuberg_H1B.pdf")
-    merger.append("pdf_file/I-94_Artatrana.pdf")
-    merger.append("pdf_file/Artatrana_H4_EAD_Application_receipt.pdf")
-    merger.write("pdf_file/Artatrana_Cuberg_H1_I94_H4.pdf")
+    merger.append("pdf_file/split_pages/page_1.pdf")
+    merger.append("pdf_file/split_pages/page_2.pdf")
+    #merger.append("pdf_file/Artatrana_H4_EAD_Application_receipt.pdf")
+    merger.write("pdf_file/H1B_Mphasis_Artatrana.pdf")
     merger.close()
 
 def split_pdf2(input_pdf, output_folder):
@@ -23,7 +23,7 @@ def split_pdf2(input_pdf, output_folder):
     print("PDF split successfully.")
 
 if __name__ == "__main__":
-    input_pdf = "pdf_file/Artatrana_Mca_Bsc.pdf"
+    input_pdf = "pdf_file/H1B_Mphasis_Artatrana.pdf"
     output_folder = "pdf_file/split_pages"
     #split_pdf2(input_pdf, output_folder)
     file_merge()

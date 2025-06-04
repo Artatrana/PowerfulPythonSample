@@ -44,7 +44,7 @@ def gcd(a,b):
 def gcd1(a,b):
     while b:
         a, b = b, a % b
-    return abs(a) # retun absolute value to handle negative inputs
+    return abs(a) # return absolute value to handle negative inputs
 
 print(math.gcd(24, 18)) 
 print(math.gcd(15, 35)) 

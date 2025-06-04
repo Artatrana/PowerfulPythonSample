@@ -18,6 +18,6 @@ def unpickle_data():
     print("Data has been unpickled:", loaded_data)
 
 if __name__ == '__main__':
-    #pickle_data_test()
-    unpickle_data()
+    pickle_data_test()
+    #unpickle_data()
 
