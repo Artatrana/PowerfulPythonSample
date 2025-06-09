@@ -3,7 +3,7 @@
 def reorderLogFiles(logs: list[str]) -> list[str] :
 
     # define the numberic and alpha emtry list
-    res1, res2 = [] []
+    res1, res2 = [], []
 
     # Iterate though the logs
     for log in logs:

@@ -23,8 +23,8 @@ def split_pdf2(input_pdf, output_folder):
     print("PDF split successfully.")
 
 if __name__ == "__main__":
-    input_pdf = "pdf_file/H1B_Mphasis_Artatrana.pdf"
+    input_pdf = "pdf_file/eStmt_2025-05-15.pdf"
     output_folder = "pdf_file/split_pages"
-    #split_pdf2(input_pdf, output_folder)
-    file_merge()
+    split_pdf2(input_pdf, output_folder)
+    #file_merge()
 

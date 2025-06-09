@@ -1,0 +1,85 @@
+Question - 1
+Remove Duplicates from List
+Given a list of integers, return a new list with duplicates removed, preserving order.
+Logic
+- First create a empty set to hold the unique number parsed though loop
+- Create a list to hold the output list of item
+- Loop though the supplied list:
+    - if the item not in the set
+        - add the item to the see set
+        - add the item to the result list
+    - if its already there in the set: that mean the item already parsed though loop and no need to be there in the result list
+
+Question - 2
+Find All Pairs with a Given Sum
+Given a list of integers and a target sum, return all unique pairs that sum up to the target.
+Logic
+- Create a set to store the element seen while parsing or looping though the element
+- Create a set of Touple of number to return as output
+- Loop though the list for each of the number
+    - Find the complement of the number by substracting it form the target number
+    - now if the Complement of the is present in the see set, that mean the touple shoud be store to return.
+      Make suer the touple shoud be sorted to avoid duplicate - like (1,4) and (4,1) are same but if won't sorted will be treated as diff
+    - add the number to the set of seen
+
+Question - 3
+Rotate List
+Rotate a list to the right by k positions.
+Example: [1, 2, 3, 4, 5], k=2 → [4, 5, 1, 2, 3]
+Logic
+- To rotate the Kth position. We need to devide the list with two part
+    - one is from kth Element to last element of the original list will become the first part of the list
+    - Second part is starting till Kth - which will became the last part of the new rotated list
+    - But we have two adege case when lengh of the list is 0 return list
+    - When the position k is greater than the length of the list, then we have to find the position by doing a modulo k % len(list)
+
+Question - 4
+Flatten a Nested List
+Flatten a list that may contain nested lists.
+Input: [1, [2, [3, 4]], 5] → Output: [1, 2, 3, 4, 5]
+
+Logic
+- Loop though the list
+    - if the item is a list, call the same function recurrsively
+    - If its an item add it to the result
+
+Question - 5
+Find the Longest Increasing Subsequence
+Return the longest increasing subsequence in a list.
+Example: [10, 9, 2, 5, 3, 7, 101, 18] → [2, 3, 7, 101]
+
+Question - 6
+Partition List by Parity
+Rearrange a list so all even numbers appear before odd numbers.
+Logic:
+- Let two create two empty list. Keep all even numbers in one list and odd numbers in another list
+- Combine both lists: even first, then odd.
+
+Question - 7
+Find the Majority Element
+Return the element that appears more than n//2 times. Assume one always exists.
+Logic :
+- Start with initializing candidate and count and set as None and 0
+- loop though each number in the list
+- if count = 0, assign the current number as candidate
+- if the current number = candidate increase the counter
+- else decrease count
+- At the end candidte is majoroty of the element
+
+
+Question - 8
+Product of All Except Self
+For each index in the list, return the product of all other elements.
+Input: [1,2,3,4] → Output: [24,12,8,6]
+Logic :
+- Make a new list where each index i has the product of all the elelments to the left of i
+- Multiply each index with the product of all element to the right
+
+Question - 9
+Find Peak Element
+A peak is an element that is greater than its neighbors. Return the index of any one peak.
+
+Question - 10
+Merge Intervals
+Given a list of intervals, merge all overlapping intervals.
+Input: [[1,3],[2,6],[8,10],[15,18]] → Output: [[1,6],[8,10],[15,18]]

@@ -1,0 +1,86 @@
+Question - 1
+Reverse Words in a Sentence
+Input: "the sky is blue" → Output: "blue is sky the"
+Logic : Split the sentence and join it in reverse order
+
+Question - 2
+Check for Palindrome (Ignore Case and Spaces)
+Input: "A man a plan a canal Panama" → Output: True
+Logic
+- Remove all spaces from string
+- convert the string to lower cases
+- compare the sting to the reversed string
+- if the are same than palindrome else not
+
+Question - 3
+Longest Common Prefix
+Input: ["flower","flow","flight"] → Output: "fl"
+Logic:
+- Check if the list is empty and if so return empty list
+- Though a loop find the word with min length and this would be maximum length of common prefix of the words
+- Initialize
+  lcp = lcp (longest common prefix so far) as an empty string.
+  i = 0 to start checking characters from the beginning.
+- Create a loop for the 0 to Max length of LCP
+    - take the ith character from the first word
+    - Loop through the rest of the words
+         - If all words have the same character at position i: add the character to LCP
+         - Move to the next character (i += 1).
+    - Return the full lcp after checking all positions.
+
+Question - 4
+String Compression
+Input: "aabcccccaaa" → Output: "a2b1c5a3"
+Logic:
+- Go though each charater of the list though loop
+- Count the times same character appeared
+- add the character and its count to a list
+- Finally make the list a string.
+
+Question - 5
+Find First Non-Repeating Character
+Input: "leetcode" → Output: "l"
+Logic:
+- First initialize a dictionary
+- Loop though the character in the list and store the character and its count in the dictionary
+- Next go though the dictionary and return having first character count 1
+
+
+Question - 6
+Check if Two Strings are Anagrams
+Return True if one string is an anagram of another.
+Logic:
+- If the length are not same return false
+- Count how many times each character appears in both string
+- IF the character counts are same return True
+
+Question - 7
+Count and Say
+Generate the nth term of the count-and-say sequence.
+
+Question - 8
+Group Anagrams
+Input: ["eat", "tea", "tan", "ate", "nat", "bat"] → Group into anagram sets.
+Logic:
+- For each word sort the letters alphabetically
+- Use the sort word as the key in a dictionary
+- Gorup the word that have same sorted key
+
+Question - 9
+Implement strStr()
+Implement function that returns the index of the first occurrence of one string in another.
+Logic
+- Lets assuem that we are going to define the funtion like this strStr(haystack, needle)
+- If needle is empty string return 0
+- go though each position of haystack, from 0 to len(haystack) - len(needle)
+- At each position, take a substring of length equal to needle
+- If it matches → return that index.
+- If no match is found → return -1.
+
+Question - 10
+Find All Duplicates in String
+Input: "programming" → Output: ['r', 'g', 'm']
+Logic:
+- Loop through each character in the string
+- Keep track of how many times each character appears in the sting
+- Collect those character which appreas more than once

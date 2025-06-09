@@ -1,34 +1,35 @@
-# Print Sprial Matrix
-
-def spiralOrder(matrix: list[list[]]) -> list:
+def spiralOrder(matrix: list[list[int]]) -> list:
     if not matrix:
         return []
-    
-    rowbegin = 0
-    rowend = len(matrix)
-    columnbegin = 0
-    columnend = len(matrix[0])
+
+    row_begin = 0
+    row_end = len(matrix)
+    column_begin = 0
+    column_end = len(matrix[0])
 
     result = []
 
-    while rowbegin < rowend and columnbegin < columnend:
-        for i in range(columnbegin, columnend):
-            result.append(matrix[rowbegin][i])
+    while row_begin < row_end and column_begin < column_end:
+        # 1. Traverse from Left to Right
+        for i in range(column_begin, column_end):
+            result.append(matrix[row_begin][i])
+        row_begin += 1
 
-        for j in range(rowbegin+1, rowend - 1):
-            result.append(matrix[j][columnend-1])
-        
-        if rowend != rowbegin +1:
-            for i in range(columnend -1 , columnbegin -1,-1):
-                result.append(matrix[rowend-1][i])
-        if columnbegin != columnend -1:
-            for j in range(rowend-2, rowbegin, -1):
-                result.append(matrix[j][columnbegin])
-        
-        rowbegin += 1
-        rowend -= 1
-        columnbegin += 1 
-        columnend -= 1
+        # 2. Traverse downwards
+        for j in range(row_begin, rowend):
+            result.append(matrix[j][column_end - 1])
+        column_end -= 1
 
+        # 3. Traverse from Right to Left
+        if row_begin < rowend:
+            for i in range(column_end - 1, column_begin - 1, -1):
+                result.append(matrix[row_begin - 1][i])
+            rowend -= 1
 
+        # 4. Traverse upwards
+        if column_begin < column_end:
+            for j in range(row_begin - 1, row_begin - 1, -1):
+                result.append(matrix[j][column_begin])
+            column_begin += 1
 
+    return result

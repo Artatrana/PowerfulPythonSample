@@ -1,4 +1,4 @@
-# Give a list of word, write a function to return list havig anagram ward togethe
+# Give a list of word, write a function to return list havig anagram ward together
 
 def group_anagram(s: list[str]) -> list[str]:
 

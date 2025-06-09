@@ -130,7 +130,11 @@ def lcm1(a,b):
 # print(lcm1(12, 15))
 # print(lcm1(12, 18))
 
-# 
+# Find GCD of two number
+def gcd(a,b):
+    while b:
+        a, b = a, b % a
+    return a
 
 #38. Transpose a Square Matrix In-Place
 def transpose_square(matrix):
