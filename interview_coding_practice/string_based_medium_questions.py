@@ -1,5 +1,5 @@
 # Question 1
-from interview_practice.group_anagram import group_anagram
+from interview_coding_practice.group_anagram import group_anagram
 
 
 def reverse_word(sentence: str):

@@ -7,18 +7,23 @@
 # Step 1: Create a diconary - store the fequency of each number
 # Step 2: Sort the dicionary items by value(count) in descending order
 # Step 3: Pick Top K
-def topKFrequent(nums, k):
-    frequcy = {}
-    for num in nums:
-        frequcy[num] = frequcy.get(num, 0 ) + 1
-
-    #print(frequcy.items(), type(frequcy.items()), frequcy.keys(), type(frequcy.keys()))
-    sorted_frequency = sorted(frequcy.items(), key = lambda x: x[1], reverse=True)
-    #print(sorted_frequency, type(sorted_frequency))
-
-    return [item[0] for item in sorted_frequency[:k]]
-
-print(topKFrequent([1,1,1,2,2,3],2))
+# def topKFrequent(nums, k):
+#     frequcy = {}
+#     for num in nums:
+#         frequcy[num] = frequcy.get(num, 0 ) + 1
+#
+#     #print(frequcy.items(), type(frequcy.items()), frequcy.keys(), type(frequcy.keys()))
+#     sorted_frequency = sorted(frequcy.items(), key = lambda x: x[1], reverse=True)
+#     #print(sorted_frequency, type(sorted_frequency))
+#
+#     return [item[0] for item in sorted_frequency[:k]]
+#
+# print(topKFrequent([1,1,1,2,2,3],2))
 # print(topKFrequent([1],1))
 # print(topKFrequent([4,4,4,5,5,6],2))
 
+dict_exam1 = {'a':1, 'b': 2, 'c':3}
+dict_exam2 = {'d':5, 'e': 10, 'f':15}
+
+dict_exam1.update(dict_exam2)
+print(dict_exam1)

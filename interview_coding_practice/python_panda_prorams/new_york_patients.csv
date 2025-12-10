@@ -1,0 +1,4 @@
+PatientID,PatientName,Age,Treatment,Cost,City,CostCategory
+1,Alice,29,Chemotherapy,12000,New York,Low
+4,David,50,Surgery,20000,New York,High
+7,Grace,30,Surgery,18000,New York,High

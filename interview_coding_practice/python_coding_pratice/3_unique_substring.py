@@ -3,6 +3,20 @@
 # Input: `"bbbbb"` → Output: `1 ("b")`
 # Input: `"pwwkew"` → Output: `3 ("wke")`
 # Logic: Use a sliding window  set to track seen chars. Move window when repeat found.
+# Detail Logic:
+# First create a Dictionary seen to store the character you encounter to check if its duplicate
+# Also initialize a variable max_length  to keep track of maximum length you see so far
+# Alos initialize a variable start to keep starting position of the unique string
+# Loop though the word by extracting character and its position with enumerate
+#   for each pass of the loop
+#       - check if the character is already there in the seen dictionary
+#       - If yes, that mean the substring is no more consist of unique letter
+#       - change the start to character index of the char plus one
+#         - if not : I mean if the char is not present in Seen
+#         - add the char to seen with value as Index
+#         - Also change Max_legnt as there strill unique ness there index - strart + 1
+#   Finally return max_length
+
 
 def length_of_longest_substring(s):
 

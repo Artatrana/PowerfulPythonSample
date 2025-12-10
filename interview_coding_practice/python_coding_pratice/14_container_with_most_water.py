@@ -15,6 +15,7 @@ def max_area( heights):
     while left < right:
         width = right - left
         area = min(heights[left],heights[right]) * width
+        #print(left, right, heights[left], heights[right], width, area)
         max_water = max(max_water, area)
 
         if heights[left] < heights[right]:
@@ -24,7 +25,7 @@ def max_area( heights):
     return max_water
 
 print(max_area([1,8,6,2,5,4,8,3,7]))
-print(max_area([1,1]))
-print(max_area([4,3,2,1,4]))
-#print(max_area([0,1,0,2,1,0,1,3,2,1,2,1]))
+# print(max_area([1,1]))
+# print(max_area([4,3,2,1,4]))
+# #print(max_area([0,1,0,2,1,0,1,3,2,1,2,1]))
 

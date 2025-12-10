@@ -9,22 +9,22 @@
 #         - Initialize a dicitonary to store sum and it occurance
 # Step 2: For each element in the list of number:
 #         - Add the number to running_total
-#         - Now decuct the target and check if there is sum already OtherRevInfo
+#         - Now deduct the target and check if there is sum already OtherRevInfo
 #         - If so - increment the counter
 #         - If not add the dictionary
 
 def subarray_sum(nums, k):
         count = 0
-        prefix_sum = 0
+        running_total = 0
         frequncy_count = {0:1}
         for num in nums:
-                prefix_sum += num
+                running_total += num
 
-                reminder = prefix_sum - k
+                reminder = running_total - k
                 if reminder in frequncy_count:
                         count += frequncy_count[reminder]
 
-                frequncy_count[prefix_sum]=frequncy_count.get(prefix_sum,0 ) + 1
+                frequncy_count[running_total]=frequncy_count.get(running_total,0 ) + 1
         return count
 
 print(subarray_sum([1,1,1], 2))   # 2
