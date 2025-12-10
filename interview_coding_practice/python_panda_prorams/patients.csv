@@ -1,0 +1,9 @@
+PatientID,PatientName,Age,Treatment,Cost,City
+1,Alice,29,Chemotherapy,12000,New York
+2,Bob,45,Radiation,8000,Chicago
+3,Charlie,35,Immunotherapy,15000,San Francisco
+4,David,50,Surgery,20000,New York
+5,Eva,40,Chemotherapy,11000,Chicago
+6,Frank,60,Radiation,9000,San Francisco
+7,Grace,30,Surgery,18000,New York
+8,Helen,55,Chemotherapy,13000,Chicago

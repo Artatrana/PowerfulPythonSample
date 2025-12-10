@@ -1,0 +1,479 @@
+Absolutely! Here’s a list of **10 Python coding interview questions** with **medium complexity** — along with a brief explanation of the logic for each. This will help you understand what’s being tested and how to approach them.
+
+---
+
+## ✅ **1️⃣ Two Sum**
+
+**Problem:**
+Given an array of integers and a target sum, return the indices of the two numbers that add up to the target.
+
+**Logic:**
+Use a hash map to store numbers and their indices as you iterate. For each number, check if `target - number` is already in the map.
+
+---
+
+## ✅ **2️⃣ Longest Substring Without Repeating Characters**
+
+**Problem:**
+Given a string, find the length of the longest substring without repeating characters.
+
+**Logic:**
+Use a sliding window with two pointers. Move the right pointer and keep a set of seen characters. If a duplicate is found, move the left pointer to shrink the window.
+
+---
+
+## ✅ **3️⃣ Valid Parentheses**
+
+**Problem:**
+Given a string of parentheses `()[]{}`, determine if it is valid (properly nested and closed).
+
+**Logic:**
+Use a stack. Push opening brackets; for closing brackets, check if they match the last opening bracket.
+
+---
+
+## ✅ **4️⃣ Merge Intervals**
+
+**Problem:**
+Given a list of intervals, merge overlapping intervals.
+
+**Logic:**
+Sort intervals by start time. Iterate and merge overlapping ones by comparing end times.
+
+---
+
+## ✅ **5️⃣ Product of Array Except Self**
+
+**Problem:**
+Given an array, return an array where each element is the product of all other elements (no division).
+
+**Logic:**
+Use prefix and suffix arrays:
+
+* One pass to compute prefix products.
+* Another pass backward to multiply by suffix products.
+
+---
+
+## ✅ **6️⃣ Subarray Sum Equals K**
+
+**Problem:**
+Given an array of integers and an integer k, find the total number of continuous subarrays whose sum equals to k.
+
+**Logic:**
+Use a hash map to store prefix sums and their counts. For each element, check if `(current_sum - k)` exists in the map.
+
+---
+
+## ✅ **7️⃣ Find Peak Element**
+
+**Problem:**
+A peak element is an element that is greater than its neighbors. Find a peak element in the array.
+
+**Logic:**
+Use binary search: check mid and neighbors to decide which side must have a peak.
+
+---
+
+## ✅ **8️⃣ Rotate Matrix (Image)**
+
+**Problem:**
+Given an n x n matrix, rotate it 90 degrees clockwise in-place.
+
+**Logic:**
+Transpose the matrix, then reverse each row.
+
+---
+
+## ✅ **9️⃣ Word Break Problem**
+
+**Problem:**
+Given a string and a dictionary of words, check if the string can be segmented into a space-separated sequence of one or more dictionary words.
+
+**Logic:**
+Use dynamic programming: `dp[i]` is True if substring `s[0:i]` can be segmented.
+
+---
+
+## ✅ **🔟 Next Permutation**
+
+**Problem:**
+Implement next permutation of a list of numbers in lexicographic order.
+
+**Logic:**
+Find the first decreasing pair from the end. Swap it with the smallest number larger than it on the right, then reverse the subarray to the right.
+
+---
+
+## 📌 **Summary Table**
+
+| #  | Question              | Core Logic                |
+| -- | --------------------- | ------------------------- |
+| 1  | Two Sum               | Hash map for complements  |
+| 2  | Longest Substring     | Sliding window, hash set  |
+| 3  | Valid Parentheses     | Stack                     |
+| 4  | Merge Intervals       | Sort + merge              |
+| 5  | Product Except Self   | Prefix & suffix pass      |
+| 6  | Subarray Sum Equals K | Prefix sum + hash map     |
+| 7  | Find Peak Element     | Binary search             |
+| 8  | Rotate Matrix         | Transpose + reverse rows  |
+| 9  | Word Break            | Dynamic programming       |
+| 10 | Next Permutation      | Find pivot, swap, reverse |
+
+---
+Absolutely! Here’s a **second set of 10 more Python coding questions** of **medium complexity**, with clear logic explanations. This set covers different problem types — arrays, strings, trees, and a bit of dynamic programming — great for solid practice!
+
+---
+
+## ✅ **1️⃣ Kth Largest Element in an Array**
+
+**Problem:**
+Find the Kth largest element in an unsorted array.
+
+**Logic:**
+Use a min-heap of size K. Push elements; if heap size exceeds K, pop the smallest. The root is the Kth largest.
+
+---
+
+## ✅ **2️⃣ Top K Frequent Elements**
+
+**Problem:**
+Given an array, return the K most frequent elements.
+
+**Logic:**
+Use a hash map to count frequencies, then a heap or bucket sort to get top K frequent numbers.
+
+---
+
+## ✅ **3️⃣ Group Anagrams**
+
+**Problem:**
+Given a list of strings, group them by anagrams.
+
+**Logic:**
+Use a hash map: key = sorted string, value = list of original strings. Collect values at the end.
+
+---
+
+## ✅ **4️⃣ Spiral Matrix**
+
+**Problem:**
+Given an m x n matrix, return all elements in spiral order.
+
+**Logic:**
+Simulate spiral traversal: use four pointers (top, bottom, left, right) and update them layer by layer.
+
+---
+
+## ✅ **5️⃣ Set Matrix Zeroes**
+
+**Problem:**
+If an element in a matrix is 0, set its entire row and column to 0 in-place.
+
+**Logic:**
+Use the first row and column to store zero flags, then update the matrix in a second pass.
+
+---
+
+## ✅ **6️⃣ Linked List Cycle**
+
+**Problem:**
+Detect if a linked list has a cycle.
+
+**Logic:**
+Use two pointers (slow and fast). If they meet, there is a cycle.
+
+---
+
+## ✅ **7️⃣ Reverse Linked List**
+
+**Problem:**
+Reverse a singly linked list.
+
+**Logic:**
+Iteratively change each node’s `.next` pointer to point to the previous node.
+
+---
+
+## ✅ **8️⃣ Binary Tree Level Order Traversal**
+
+**Problem:**
+Return the level order traversal of a binary tree’s nodes.
+
+**Logic:**
+Use a queue (BFS) to visit nodes level by level.
+
+---
+
+## ✅ **9️⃣ Maximum Subarray**
+
+**Problem:**
+Find the contiguous subarray with the largest sum.
+
+**Logic:**
+Use Kadane’s Algorithm: iterate and keep track of `current_max` and `global_max`.
+
+---
+
+## ✅ **🔟 Climbing Stairs**
+
+**Problem:**
+You can climb 1 or 2 stairs at a time. How many distinct ways to reach the top?
+
+**Logic:**
+Dynamic programming: `dp[i] = dp[i-1] + dp[i-2]`.
+
+---
+
+## 📌 **Second Set Summary Table**
+
+| #  | Question                | Core Logic                        |
+| -- | ----------------------- | --------------------------------- |
+| 1  | Kth Largest Element     | Min-heap                          |
+| 2  | Top K Frequent          | Hash map + heap/buckets           |
+| 3  | Group Anagrams          | Hash map with sorted key          |
+| 4  | Spiral Matrix           | Simulate with 4 pointers          |
+| 5  | Set Matrix Zeroes       | Use first row & column as markers |
+| 6  | Linked List Cycle       | Two pointers (slow & fast)        |
+| 7  | Reverse Linked List     | Pointer manipulation              |
+| 8  | Binary Tree Level Order | BFS with a queue                  |
+| 9  | Maximum Subarray        | Kadane’s algorithm                |
+| 10 | Climbing Stairs         | DP (Fibonacci-like)               |
+
+---
+
+✅ **If you want**, I can share the **Python code implementations** for all of these too — ready to test or practice.
+
+Would you like the code for this second set as well? 🚀✨
+Absolutely — here’s a **third set** of **10 more medium-complexity Python coding questions**, each with a clear logic explanation. This set mixes arrays, strings, trees, backtracking, and bit manipulation — perfect for well-rounded practice.
+
+---
+
+## ✅ **1️⃣ Permutations**
+
+**Problem:**
+Given an array of distinct integers, return all possible permutations.
+
+**Logic:**
+Use backtracking: for each position, swap the current element with each following element, recurse, and backtrack.
+
+---
+
+## ✅ **2️⃣ Combination Sum**
+
+**Problem:**
+Given a set of candidate numbers (no duplicates) and a target number, find all unique combinations where the candidate numbers sum to target.
+
+**Logic:**
+Use backtracking: for each candidate, choose it if it doesn’t exceed the remaining sum and recurse. Allow reuse of the same number.
+
+---
+
+## ✅ **3️⃣ Search in Rotated Sorted Array**
+
+**Problem:**
+Search for a target value in a rotated sorted array.
+
+**Logic:**
+Use modified binary search: check which side is sorted and decide which half to search next.
+
+---
+
+## ✅ **4️⃣ Minimum Window Substring**
+
+**Problem:**
+Given two strings s and t, find the minimum window in s which contains all characters in t.
+
+**Logic:**
+Use a sliding window: expand the right pointer to include required characters, then move the left pointer to minimize the window.
+
+---
+
+## ✅ **5️⃣ Container With Most Water**
+
+**Problem:**
+Given n lines, find two lines that together with the x-axis form a container, such that the container contains the most water.
+
+**Logic:**
+Use two pointers: start at both ends, calculate area, and move the pointer pointing to the shorter line inward.
+
+---
+
+## ✅ **6️⃣ Majority Element**
+
+**Problem:**
+Find the element that appears more than ⌊n/2⌋ times in an array.
+
+**Logic:**
+Use Boyer-Moore Voting Algorithm: keep a candidate and a count. Increment count for the same number, decrement for a different one.
+
+---
+
+## ✅ **7️⃣ Power of Two**
+
+**Problem:**
+Determine if an integer is a power of two.
+
+**Logic:**
+A number is a power of two if it’s greater than 0 and its binary representation has only one ‘1’. So, `n & (n - 1) == 0`.
+
+---
+
+## ✅ **8️⃣ House Robber**
+
+**Problem:**
+You are a robber who can’t rob adjacent houses. Find the maximum amount of money you can rob.
+
+**Logic:**
+Dynamic programming: `dp[i] = max(dp[i-1], dp[i-2] + nums[i])`.
+
+---
+
+## ✅ **9️⃣ Single Number**
+
+**Problem:**
+In an array where every element appears twice except for one, find that single one.
+
+**Logic:**
+Use XOR: `a ^ a = 0` so XORing all elements cancels pairs and leaves the single one.
+
+---
+
+## ✅ **🔟 Binary Tree Maximum Path Sum**
+
+**Problem:**
+Find the maximum path sum in a binary tree (path can start and end at any node).
+
+**Logic:**
+Use DFS: for each node, calculate max gain from left and right; update global max by considering the current node as a bridge.
+
+---
+
+## 📌 **Third Set Summary Table**
+
+| #  | Question                  | Core Logic                    |
+| -- | ------------------------- | ----------------------------- |
+| 1  | Permutations              | Backtracking with swaps       |
+| 2  | Combination Sum           | Backtracking with reuse       |
+| 3  | Search in Rotated Array   | Modified binary search        |
+| 4  | Minimum Window Substring  | Sliding window with hash maps |
+| 5  | Container With Most Water | Two pointers inward           |
+| 6  | Majority Element          | Boyer-Moore Voting            |
+| 7  | Power of Two              | Bit manipulation              |
+| 8  | House Robber              | DP (max of rob or skip)       |
+| 9  | Single Number             | XOR all elements              |
+| 10 | Binary Tree Max Path Sum  | DFS + global max              |
+
+---
+
+## ✅ **Next**
+
+If you want, I can prepare **full Python code solutions for this third set**, with clean explanations — or wrap all 30 questions into a single reference notebook or script!
+
+Would you like that? 🚀✨
+Perfect — here’s a **fourth set** of **10 more Python coding interview questions** at medium complexity, with the core logic explained. This set brings in more tree, graph, backtracking, and classic DP ideas — rounding out your prep.
+
+---
+
+## ✅ **1️⃣ Coin Change**
+
+**Problem:**
+Given coins of different denominations and an amount, find the minimum number of coins to make up that amount.
+
+**Logic:**
+Dynamic Programming:
+`dp[i] = min(dp[i], dp[i - coin] + 1)` for all coins and amounts up to the target.
+
+---
+
+## ✅ **2️⃣ Word Ladder**
+
+**Problem:**
+Given a start word, an end word, and a dictionary, find the length of the shortest transformation sequence (change one letter at a time, each must be in dictionary).
+
+**Logic:**
+Use BFS to expand words by changing one letter at a time, keeping visited words to avoid cycles.
+
+---
+
+## ✅ **3️⃣ Course Schedule**
+
+**Problem:**
+Given course prerequisites, determine if it’s possible to finish all courses.
+
+**Logic:**
+Detect cycles in a directed graph using DFS or topological sort.
+
+---
+
+## ✅ **4️⃣ Binary Search Tree Iterator**
+
+**Problem:**
+Implement an iterator over a BST that returns elements in ascending order.
+
+**Logic:**
+Use a stack to simulate in-order traversal iteratively.
+
+---
+
+## ✅ **5️⃣ Flatten Binary Tree to Linked List**
+
+**Problem:**
+Flatten a binary tree to a linked list in-place (preorder).
+
+**Logic:**
+Use recursion or an iterative stack: link right pointers to next preorder node.
+
+---
+
+## ✅ **6️⃣ Palindromic Substrings**
+
+**Problem:**
+Given a string, count how many substrings are palindromic.
+
+**Logic:**
+Expand around every possible center (each character and between each pair) and count valid palindromes.
+
+---
+
+## ✅ **7️⃣ Decode Ways**
+
+**Problem:**
+Given a string of digits, count how many ways it can be decoded (e.g., "12" → "AB" or "L").
+
+**Logic:**
+Dynamic Programming:
+`dp[i] = dp[i-1] if s[i-1] valid + dp[i-2] if s[i-2:i] valid`.
+
+---
+
+## ✅ **8️⃣ Longest Palindromic Substring**
+
+**Problem:**
+Find the longest palindromic substring in a given string.
+
+**Logic:**
+Expand around each possible center and track the longest found.
+
+---
+
+## ✅ **9️⃣ Generate Parentheses**
+
+**Problem:**
+Given n pairs of parentheses, generate all valid combinations.
+
+**Logic:**
+Backtracking: keep count of open and close brackets used; only add a close if there are unmatched opens.
+
+---
+
+## ✅ **🔟 Edit Distance**
+
+**Problem:**
+Given two words, find the minimum number of operations (insert, delete, replace) to convert one to the other.
+
+**Logic:**
+Dynamic Programming:
+`dp[i][j]` = min edits to convert first i chars of word1 to first j chars of word2.
+
+Question 51: Write a Python program to find the second largest number in a list.

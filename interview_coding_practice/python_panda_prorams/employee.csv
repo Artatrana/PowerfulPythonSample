@@ -1,0 +1,46 @@
+employee_id,first_name,last_name,department,position,hire_date,salary
+1001,John,Smith,Engineering,Software Engineer,2022-01-15,75000
+1002,Sarah,Johnson,Marketing,Marketing Manager,2021-06-10,68000
+1003,Mike,Davis,Engineering,Senior Developer,2020-03-22,
+1004,Emily,Brown,HR,HR Specialist,2023-02-08,52000
+1005,David,Wilson,Finance,Accountant,2021-11-30,58000
+1006,Lisa,Garcia,Engineering,DevOps Engineer,2022-09-12,
+1007,Tom,Miller,Sales,Sales Representative,2023-01-20,45000
+1008,Anna,Martinez,Marketing,Content Creator,2022-04-18,
+1009,Chris,Anderson,Engineering,Junior Developer,2023-05-15,55000
+1010,Jessica,Taylor,HR,Recruiter,2021-08-25,51000
+1011,Kevin,Thomas,Finance,Financial Analyst,2020-12-10,
+1012,Rachel,White,Sales,Account Manager,2022-07-03,62000
+1013,Mark,Harris,Engineering,Tech Lead,2019-11-08,95000
+1014,Jennifer,Clark,Marketing,Social Media Manager,2023-03-12,
+1015,Robert,Lewis,Finance,Controller,2020-05-20,78000
+1016,Michelle,Robinson,IT,System Administrator,2021-10-14,64000
+1017,Daniel,Walker,Sales,Senior Sales Rep,2022-02-28,
+1018,Amanda,Hall,Marketing,Brand Manager,2020-09-05,72000
+1019,Jason,Allen,Engineering,Full Stack Developer,2023-04-10,68000
+1020,Nicole,Young,HR,Benefits Coordinator,2022-08-17,48000
+1021,Brian,King,Finance,Budget Analyst,2021-12-03,
+1022,Stephanie,Wright,IT,Network Engineer,2020-07-22,71000
+1023,Gregory,Lopez,Sales,Territory Manager,2023-01-08,59000
+1024,Lauren,Hill,Marketing,Email Marketing Specialist,2022-11-15,
+1025,Patrick,Scott,Engineering,Data Engineer,2021-05-12,79000
+1026,Melissa,Green,HR,Training Coordinator,2020-04-30,53000
+1027,Andrew,Adams,Finance,Senior Accountant,2022-06-20,65000
+1028,Kimberly,Baker,IT,Database Administrator,2021-09-07,
+1029,Jonathan,Gonzalez,Sales,Inside Sales Rep,2023-02-25,42000
+1030,Samantha,Nelson,Marketing,Product Marketing Manager,2020-12-18,76000
+1031,Matthew,Carter,Engineering,Mobile Developer,2022-03-14,73000
+1032,Rebecca,Mitchell,HR,Compensation Analyst,2021-07-09,
+1033,Christopher,Perez,Finance,Tax Specialist,2020-11-26,61000
+1034,Ashley,Roberts,IT,Security Analyst,2023-05-03,69000
+1035,Ryan,Turner,Sales,Key Account Manager,2022-01-31,67000
+1036,Megan,Phillips,Marketing,Marketing Analyst,2021-04-16,
+1037,Joseph,Campbell,Engineering,Site Reliability Engineer,2020-08-12,82000
+1038,Kelly,Parker,HR,Employee Relations Specialist,2022-10-05,56000
+1039,Timothy,Evans,Finance,Payroll Specialist,2021-02-19,49000
+1040,Heather,Edwards,IT,Help Desk Manager,2023-03-28,
+1041,Brandon,Collins,Sales,Business Development Rep,2022-09-14,44000
+1042,Amy,Stewart,Marketing,Creative Director,2020-06-02,85000
+1043,Sean,Sanchez,Engineering,QA Engineer,2021-11-18,63000
+1044,Crystal,Morris,HR,HRIS Specialist,2022-12-08,
+1045,Eric,Rogers,Finance,Credit Analyst,2020-10-15,57000

@@ -1,0 +1,888 @@
+# 30 Medium-Complexity Python Interview Questions
+
+## String Problems
+
+### 1. Longest Substring Without Repeating Characters
+**Problem:** Find the length of the longest substring without repeating characters.
+**Example:** Input: "abcabcbb" → Output: 3 (substring "abc")
+
+**Logic (Layman's terms):**
+Think of this like a sliding window that you move across the string. Keep a window that
+contains unique characters only. When you encounter a duplicate character, shrink the window from the left until the
+duplicate is removed. Keep track of the largest window size you've seen. It's like trying to fit as many different colored
+balls as possible in a box - when you get a duplicate color, remove balls from the left until you can fit the new one.
+
+```python
+def lengthOfLongestSubstring(s):
+    char_set = set()
+    left = 0
+    max_len = 0
+
+    for right in range(len(s)):
+        while s[right] in char_set:
+            char_set.remove(s[left])
+            left += 1
+        char_set.add(s[right])
+        max_len = max(max_len, right - left + 1)
+
+    return max_len
+
+# Test: "abcabcbb" -> 3
+print(lengthOfLongestSubstring("abcabcbb"))
+```
+
+### 2. Valid Anagram
+**Problem:** Check if two strings are anagrams of each other.
+**Example:** Input: "listen", "silent" → Output: True
+
+**Logic (Layman's terms):** Imagine you have two bags of letter tiles (like in Scrabble).
+Two words are anagrams if they use exactly the same letters the same number of times. Count how many times each letter
+appears in the first word, then go through the second word and "use up" those letters. If you can use all letters from
+both words perfectly, they're anagrams. It's like checking if two sentences use the exact same alphabet letters.
+
+```python
+def isAnagram(s, t):
+    if len(s) != len(t):
+        return False
+
+    char_count = {}
+
+    for char in s:
+        char_count[char] = char_count.get(char, 0) + 1
+
+    for char in t:
+        if char not in char_count:
+            return False
+        char_count[char] -= 1
+        if char_count[char] == 0:
+            del char_count[char]
+
+    return len(char_count) == 0
+
+# Test: "listen", "silent" -> True
+print(isAnagram("listen", "silent"))
+```
+
+### 3. Group Anagrams
+**Problem:** Group strings that are anagrams of each other.
+**Example:** Input: ["eat","tea","tan","ate","nat","bat"] → Output: [["eat","tea","ate"],["tan","nat"],["bat"]]
+
+**Logic (Layman's terms):** Think of this like sorting mail into different boxes.
+Take each word and arrange its letters alphabetically (like "eat" becomes "aet").
+Words that have the same arranged letters are anagrams, so put them in the same box.
+It's like having a filing system where you file words by their "letter fingerprint" - all words with the
+same fingerprint go in the same folder.
+
+```python
+def groupAnagrams(strs):
+    anagram_groups = {}
+
+    for s in strs:
+        key = ''.join(sorted(s))
+        if key not in anagram_groups:
+            anagram_groups[key] = []
+        anagram_groups[key].append(s)
+
+    return list(anagram_groups.values())
+
+# Test: ["eat","tea","tan","ate","nat","bat"]
+print(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
+```
+
+### 4. Longest Palindromic Substring
+**Problem:** Find the longest palindromic substring in a string.
+**Example:** Input: "babad" → Output: "bab" (or "aba")
+
+**Logic (Layman's terms):** A palindrome reads the same forwards and backwards (like "mom" or "racecar").
+For each position in the string, pretend it's the center of a palindrome and expand outwards like ripples in a pond.
+Check if the characters on both sides match as you expand. Do this for both odd-length palindromes (single center)
+and even-length palindromes (two centers). Keep track of the longest palindrome you find.
+It's like dropping a pebble at every spot and seeing how far the ripples can go while staying symmetric.
+
+```python
+def longestPalindrome(s):
+    def expand_around_center(left, right):
+        while left >= 0 and right < len(s) and s[left] == s[right]:
+            left -= 1
+            right += 1
+        return right - left - 1
+
+    start = 0
+    max_len = 0
+
+    for i in range(len(s)):
+        len1 = expand_around_center(i, i)      # odd length
+        len2 = expand_around_center(i, i + 1)  # even length
+        current_max = max(len1, len2)
+
+        if current_max > max_len:
+            max_len = current_max
+            start = i - (current_max - 1) // 2
+
+    return s[start:start + max_len]
+
+# Test: "babad" -> "bab" or "aba"
+print(longestPalindrome("babad"))
+```
+
+### 5. String to Integer (atoi)
+**Problem:** Convert string to integer with proper handling of edge cases.
+**Example:** Input: "   -42" → Output: -42
+
+**Logic (Layman's terms):** This is like reading a number from a messy piece of paper. First, ignore any spaces at the beginning.
+Then check if there's a + or - sign to know if it's positive or negative. After that, read digits one by one and build your number (multiply what you have by 10 and add the new digit). Stop when you hit a non-digit character. Be careful about numbers that are too big - if it would overflow, just return the maximum/minimum possible value. It's like a careful accountant reading handwritten numbers and being very precise about the rules.
+
+```python
+def myAtoi(s):
+    s = s.strip()
+    if not s:
+        return 0
+
+    sign = 1
+    index = 0
+
+    if s[0] in ['+', '-']:
+        sign = -1 if s[0] == '-' else 1
+        index = 1
+
+    result = 0
+    while index < len(s) and s[index].isdigit():
+        digit = int(s[index])
+
+        # Check overflow
+        if result > (2**31 - 1 - digit) // 10:
+            return 2**31 - 1 if sign == 1 else -2**31
+
+        result = result * 10 + digit
+        index += 1
+
+    return sign * result
+
+# Test: "   -42" -> -42
+print(myAtoi("   -42"))
+```
+
+## Array Problems
+
+### 6. Two Sum
+**Problem:** Find two numbers in array that add up to target.
+**Example:** Input: [2,7,11,15], target=9 → Output: [0,1] (because 2+7=9)
+
+**Logic (Layman's terms):**
+Imagine you're at a party looking for two people whose ages add up to a specific number.
+Instead of asking everyone their age twice, you remember each person's age as you meet them.
+For each new person, you calculate what age you need to reach your target, then check if you've already
+met someone with that age. If yes, you found your pair! It's like having a memory book where you write down
+"I need someone aged X" and check if you've seen them before.
+
+```python
+def twoSum(nums, target):
+    num_map = {}
+
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in num_map:
+            return [num_map[complement], i]
+        num_map[num] = i
+
+    return []
+
+# Test: [2,7,11,15], target=9 -> [0,1]
+print(twoSum([2,7,11,15], 9))
+```
+
+### 7. Three Sum
+**Problem:** Find all unique triplets that sum to zero.
+**Example:** Input: [-1,0,1,2,-1,-4] → Output: [[-1,-1,2],[-1,0,1]]
+
+**Logic (Layman's terms):** Think of this as finding three people whose bank account balances add up to exactly zero.
+First, sort everyone by their balance. Then, for each person with a negative balance (they owe money),
+find two others whose balances can cancel them out. Use the "two people meeting in the middle"
+approach: start with one person from each end and move them toward each other until you find the right combination.
+Skip duplicate people to avoid counting the same group twice. It's like being a financial mediator trying to balance out debts.
+
+```python
+def threeSum(nums):
+    nums.sort()
+    result = []
+
+    for i in range(len(nums) - 2):
+        if i > 0 and nums[i] == nums[i-1]:
+            continue
+
+        left, right = i + 1, len(nums) - 1
+
+        while left < right:
+            total = nums[i] + nums[left] + nums[right]
+
+            if total < 0:
+                left += 1
+            elif total > 0:
+                right -= 1
+            else:
+                result.append([nums[i], nums[left], nums[right]])
+
+                while left < right and nums[left] == nums[left + 1]:
+                    left += 1
+                while left < right and nums[right] == nums[right - 1]:
+                    right -= 1
+
+                left += 1
+                right -= 1
+
+    return result
+
+# Test: [-1,0,1,2,-1,-4] -> [[-1,-1,2],[-1,0,1]]
+print(threeSum([-1,0,1,2,-1,-4]))
+```
+
+### 8. Container With Most Water
+**Problem:** Find two lines that form container with maximum water.
+**Example:** Input: [1,8,6,2,5,4,8,3,7] → Output: 49
+
+**Logic (Layman's terms):** Imagine you have vertical walls of different heights and you want to place a water
+container between any two walls. The water level will be limited by the shorter wall, and the container width is
+the distance between walls. To find the biggest container, start with the widest possible container (first and last wall).
+If the left wall is shorter, try moving to a taller left wall (since the short one is limiting you).
+If the right wall is shorter, move to a taller right wall. Keep doing this until the walls meet.
+It's like adjusting the walls of a swimming pool to hold the most water.
+
+```python
+def maxArea(height):
+    left, right = 0, len(height) - 1
+    max_water = 0
+
+    while left < right:
+        width = right - left
+        water = min(height[left], height[right]) * width
+        max_water = max(max_water, water)
+
+        if height[left] < height[right]:
+            left += 1
+        else:
+            right -= 1
+
+    return max_water
+
+# Test: [1,8,6,2,5,4,8,3,7] -> 49
+print(maxArea([1,8,6,2,5,4,8,3,7]))
+```
+
+### 9. Product of Array Except Self
+**Problem:** Return array where each element is product of all elements except itself.
+**Example:** Input: [1,2,3,4] → Output: [24,12,8,6] (24=2×3×4, 12=1×3×4, etc.)
+
+**Logic (Layman's terms):** Think of this like calculating everyone's share when splitting costs, but each person doesn't pay for their own item. For each person, you need the product of everyone else's costs. Instead of recalculating everything each time, be smart: first pass, calculate the product of everyone to your left. Second pass, calculate the product of everyone to your right and multiply with the left product. It's like having two helpers - one counts everything behind you, another counts everything ahead of you, then you multiply their results.
+
+```python
+def productExceptSelf(nums):
+    n = len(nums)
+    result = [1] * n
+
+    # Left products
+    for i in range(1, n):
+        result[i] = result[i-1] * nums[i-1]
+
+    # Right products
+    right_product = 1
+    for i in range(n-1, -1, -1):
+        result[i] *= right_product
+        right_product *= nums[i]
+
+    return result
+
+# Test: [1,2,3,4] -> [24,12,8,6]
+print(productExceptSelf([1,2,3,4]))
+```
+
+### 10. Maximum Subarray (Kadane's Algorithm)
+**Problem:** Find contiguous subarray with largest sum.
+**Example:** Input: [-2,1,-3,4,-1,2,1,-5,4] → Output: 6 (subarray [4,-1,2,1])
+
+**Logic (Layman's terms):** Imagine you're walking through a path where each step gives or takes money from you.
+You want to find the best continuous stretch of the path that gives you the most money.
+As you walk, keep track of how much money you have from your current stretch.
+If you ever go negative, it's better to start fresh from the next step rather than carrying debt.
+Always remember the best amount you've seen so far. It's like a stock trader who cuts losses immediately but
+lets profits run, always remembering their best performance.
+
+```python
+def maxSubArray(nums):
+    max_sum = nums[0]
+    current_sum = nums[0]
+
+    for i in range(1, len(nums)):
+        current_sum = max(nums[i], current_sum + nums[i])
+        max_sum = max(max_sum, current_sum)
+
+    return max_sum
+
+# Test: [-2,1,-3,4,-1,2,1,-5,4] -> 6
+print(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
+```
+
+### 11. Rotate Array
+**Problem:** Rotate array to the right by k steps.
+**Example:** Input: [1,2,3,4,5,6,7], k=3 → Output: [5,6,7,1,2,3,4]
+
+**Logic (Layman's terms):** Think of this like rearranging people in a circular line. Instead of moving people one by one (which is slow), use a clever trick: reverse the entire line, then reverse the first k people, then reverse the remaining people. It's like flipping a pancake three times to get the right arrangement. For example, if you want to move the last 3 people to the front: flip everyone, flip the first 3, flip the rest. This gives you the desired rotation without actually moving elements multiple times.
+
+```python
+def rotate(nums, k):
+    n = len(nums)
+    k = k % n
+
+    def reverse(start, end):
+        while start < end:
+            nums[start], nums[end] = nums[end], nums[start]
+            start += 1
+            end -= 1
+
+    reverse(0, n - 1)
+    reverse(0, k - 1)
+    reverse(k, n - 1)
+
+# Test: [1,2,3,4,5,6,7], k=3 -> [5,6,7,1,2,3,4]
+nums = [1,2,3,4,5,6,7]
+rotate(nums, 3)
+print(nums)
+```
+
+### 12. Find Peak Element
+**Problem:** Find peak element in array (element greater than neighbors).
+**Example:** Input: [1,2,3,1] → Output: 2 (index of element 3)
+
+**Logic (Layman's terms):** Imagine you're climbing a mountain in the fog and can only see one step ahead.
+You know there's a peak somewhere, but don't know where. Use binary search logic: look at the middle point
+and check which side is going uphill. Always move toward the uphill side because that's where you'll find a peak.
+Even if there are multiple peaks, this method guarantees you'll find at least one. It's like following the
+steepest path upward - you'll eventually reach a summit.
+
+```python
+def findPeakElement(nums):
+    left, right = 0, len(nums) - 1
+
+    while left < right:
+        mid = (left + right) // 2
+
+        if nums[mid] > nums[mid + 1]:
+            right = mid
+        else:
+            left = mid + 1
+
+    return left
+
+# Test: [1,2,3,1] -> 2
+print(findPeakElement([1,2,3,1]))
+```
+
+### 13. Search in Rotated Sorted Array
+**Problem:** Search target in rotated sorted array.
+**Example:** Input: [4,5,6,7,0,1,2], target=0 → Output: 4
+
+**Logic (Layman's terms):** Think of this like looking for a book on a circular bookshelf that got spun around.
+The books are still in order, but the starting point changed. Use binary search, but first figure out which half of the shelf is in proper order. If your target book is in the ordered half, search there normally. If not, search the other half. At each step, you can tell which half is ordered by comparing the first and middle books. It's like having a twisted number line where you need to figure out which part is "normal" before searching.
+
+```python
+def search(nums, target):
+    left, right = 0, len(nums) - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        if nums[mid] == target:
+            return mid
+
+        # Left half is sorted
+        if nums[left] <= nums[mid]:
+            if nums[left] <= target < nums[mid]:
+                right = mid - 1
+            else:
+                left = mid + 1
+        # Right half is sorted
+        else:
+            if nums[mid] < target <= nums[right]:
+                left = mid + 1
+            else:
+                right = mid - 1
+
+    return -1
+
+# Test: [4,5,6,7,0,1,2], target=0 -> 4
+print(search([4,5,6,7,0,1,2], 0))
+```
+
+### 14. Merge Intervals
+**Problem:** Merge overlapping intervals.
+**Example:** Input: [[1,3],[2,6],[8,10],[15,18]] → Output: [[1,6],[8,10],[15,18]]
+
+**Logic (Layman's terms):** Think of this like scheduling meetings and combining overlapping time slots. First, sort all meetings by start time (like organizing your calendar). Then go through each meeting: if it overlaps with the previous meeting (starts before the previous one ends), extend the previous meeting to cover both time periods. If it doesn't overlap, start a new separate meeting block. It's like a secretary organizing a busy executive's calendar by combining back-to-back meetings into longer blocks.
+
+```python
+def merge(intervals):
+    if not intervals:
+        return []
+
+    intervals.sort(key=lambda x: x[0])
+    merged = [intervals[0]]
+
+    for current in intervals[1:]:
+        last = merged[-1]
+
+        if current[0] <= last[1]:
+            last[1] = max(last[1], current[1])
+        else:
+            merged.append(current)
+
+    return merged
+
+# Test: [[1,3],[2,6],[8,10],[15,18]] -> [[1,6],[8,10],[15,18]]
+print(merge([[1,3],[2,6],[8,10],[15,18]]))
+```
+
+### 15. Missing Number
+**Problem:** Find missing number in array containing n distinct numbers in range [0, n].
+
+**Logic:** Use XOR properties or mathematical sum formula.
+
+```python
+def missingNumber(nums):
+    n = len(nums)
+    expected_sum = n * (n + 1) // 2
+    actual_sum = sum(nums)
+    return expected_sum - actual_sum
+
+# Alternative XOR approach
+def missingNumberXOR(nums):
+    result = len(nums)
+    for i, num in enumerate(nums):
+        result ^= i ^ num
+    return result
+
+# Test: [3,0,1] -> 2
+print(missingNumber([3,0,1]))
+```
+
+## List Problems
+
+### 16. Remove Duplicates from Sorted Array
+**Problem:** Remove duplicates in-place from sorted array.
+
+**Logic:** Two pointers - one for unique elements, one for scanning.
+
+```python
+def removeDuplicates(nums):
+    if not nums:
+        return 0
+
+    write_index = 1
+
+    for read_index in range(1, len(nums)):
+        if nums[read_index] != nums[read_index - 1]:
+            nums[write_index] = nums[read_index]
+            write_index += 1
+
+    return write_index
+
+# Test: [1,1,2] -> 2, nums = [1,2,_]
+nums = [1,1,2]
+length = removeDuplicates(nums)
+print(f"Length: {length}, Array: {nums[:length]}")
+```
+
+### 17. Move Zeroes
+**Problem:** Move all zeros to end while maintaining relative order of non-zeros.
+
+**Logic:** Two pointers - one for non-zero position, one for scanning.
+
+```python
+def moveZeroes(nums):
+    write_pos = 0
+
+    # Move all non-zero elements to front
+    for read_pos in range(len(nums)):
+        if nums[read_pos] != 0:
+            nums[write_pos] = nums[read_pos]
+            write_pos += 1
+
+    # Fill remaining positions with zeros
+    while write_pos < len(nums):
+        nums[write_pos] = 0
+        write_pos += 1
+
+# Test: [0,1,0,3,12] -> [1,3,12,0,0]
+nums = [0,1,0,3,12]
+moveZeroes(nums)
+print(nums)
+```
+
+### 18. Find All Duplicates in Array
+**Problem:** Find all duplicates in array where 1 ≤ a[i] ≤ n.
+**Example:** Input: [4,3,2,7,8,2,3,1] → Output: [2,3]
+
+**Logic (Layman's terms):** This is like using the array itself as a checklist. Since all numbers are between 1 and n, you can use each number as an "address" pointing to a position in the array. For each number you see, go to that position and mark it as "visited" by making it negative. If you try to mark a position that's already negative, you've found a duplicate! It's like having a classroom where students write their names on seats - if a seat already has a name, you found someone who came twice.
+
+### 19. Subarray Sum Equals K
+**Problem:** Find total number of subarrays whose sum equals k.
+**Example:** Input: [1,1,1], k=2 → Output: 2 (subarrays [1,1] appear twice)
+
+**Logic (Layman's terms):** Think of this like tracking your bank account balance while shopping. Keep a running total of money spent, and remember all the balances you've seen before. For each new balance, check if (current balance - target) exists in your history. If yes, it means there's a stretch of purchases that exactly equals your target. It's like asking "have I ever had exactly $k less money than I have now?" - if yes, the spending between then and now equals $k.
+
+### 20. Sliding Window Maximum
+**Problem:** Find maximum in each sliding window of size k.
+**Example:** Input: [1,3,-1,-3,5,3,6,7], k=3 → Output: [3,3,5,5,6,7]
+
+**Logic (Layman's terms):** Imagine you're looking through a window that shows exactly k numbers at a time, and you slide this window across the array. You want to quickly find the maximum in each window position. Use a smart helper that remembers numbers in decreasing order and automatically forgets numbers that are too old or too small. It's like having a leaderboard that only shows the top candidates for each window position, automatically removing players who left the game or got beaten by newer, better players.
+
+```python
+from collections import deque
+
+def maxSlidingWindow(nums, k):
+    dq = deque()  # Store indices
+    result = []
+
+    for i in range(len(nums)):
+        # Remove elements outside window
+        while dq and dq[0] <= i - k:
+            dq.popleft()
+
+        # Remove smaller elements from rear
+        while dq and nums[dq[-1]] < nums[i]:
+            dq.pop()
+
+        dq.append(i)
+
+        # Add to result if window is complete
+        if i >= k - 1:
+            result.append(nums[dq[0]])
+
+    return result
+
+# Test: [1,3,-1,-3,5,3,6,7], k=3 -> [3,3,5,5,6,7]
+print(maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3))
+```
+
+### 21. Next Permutation
+**Problem:** Find lexicographically next greater permutation.
+
+**Logic:** Find rightmost ascending pair, swap with next larger element, reverse suffix.
+
+```python
+def nextPermutation(nums):
+    # Find rightmost ascending pair
+    i = len(nums) - 2
+    while i >= 0 and nums[i] >= nums[i + 1]:
+        i -= 1
+
+    if i >= 0:
+        # Find next larger element
+        j = len(nums) - 1
+        while nums[j] <= nums[i]:
+            j -= 1
+        nums[i], nums[j] = nums[j], nums[i]
+
+    # Reverse suffix
+    nums[i + 1:] = reversed(nums[i + 1:])
+
+# Test: [1,2,3] -> [1,3,2]
+nums = [1,2,3]
+nextPermutation(nums)
+print(nums)
+```
+
+### 22. Spiral Matrix
+**Problem:** Return elements of matrix in spiral order.
+
+**Logic:** Use boundary variables and traverse layer by layer.
+
+```python
+def spiralOrder(matrix):
+    if not matrix or not matrix[0]:
+        return []
+
+    result = []
+    top, bottom = 0, len(matrix) - 1
+    left, right = 0, len(matrix[0]) - 1
+
+    while top <= bottom and left <= right:
+        # Right
+        for col in range(left, right + 1):
+            result.append(matrix[top][col])
+        top += 1
+
+        # Down
+        for row in range(top, bottom + 1):
+            result.append(matrix[row][right])
+        right -= 1
+
+        # Left (if still valid row)
+        if top <= bottom:
+            for col in range(right, left - 1, -1):
+                result.append(matrix[bottom][col])
+            bottom -= 1
+
+        # Up (if still valid column)
+        if left <= right:
+            for row in range(bottom, top - 1, -1):
+                result.append(matrix[row][left])
+            left += 1
+
+    return result
+
+# Test: [[1,2,3],[4,5,6],[7,8,9]] -> [1,2,3,6,9,8,7,4,5]
+print(spiralOrder([[1,2,3],[4,5,6],[7,8,9]]))
+```
+
+### 23. Set Matrix Zeroes
+**Problem:** Set entire row and column to zero if element is zero.
+
+**Logic:** Use first row and column as markers to save space.
+
+```python
+def setZeroes(matrix):
+    rows, cols = len(matrix), len(matrix[0])
+    first_row_zero = any(matrix[0][j] == 0 for j in range(cols))
+    first_col_zero = any(matrix[i][0] == 0 for i in range(rows))
+
+    # Use first row and column as markers
+    for i in range(1, rows):
+        for j in range(1, cols):
+            if matrix[i][j] == 0:
+                matrix[0][j] = 0
+                matrix[i][0] = 0
+
+    # Set zeros based on markers
+    for i in range(1, rows):
+        for j in range(1, cols):
+            if matrix[0][j] == 0 or matrix[i][0] == 0:
+                matrix[i][j] = 0
+
+    # Handle first row and column
+    if first_row_zero:
+        for j in range(cols):
+            matrix[0][j] = 0
+
+    if first_col_zero:
+        for i in range(rows):
+            matrix[i][0] = 0
+
+# Test example
+matrix = [[1,1,1],[1,0,1],[1,1,1]]
+setZeroes(matrix)
+print(matrix)
+```
+
+### 24. Word Break
+**Problem:** Check if string can be segmented using dictionary words.
+
+**Logic:** Dynamic programming - dp[i] represents if s[:i] can be segmented.
+
+```python
+def wordBreak(s, wordDict):
+    word_set = set(wordDict)
+    dp = [False] * (len(s) + 1)
+    dp[0] = True
+
+    for i in range(1, len(s) + 1):
+        for j in range(i):
+            if dp[j] and s[j:i] in word_set:
+                dp[i] = True
+                break
+
+    return dp[len(s)]
+
+# Test: s="leetcode", wordDict=["leet","code"] -> True
+print(wordBreak("leetcode", ["leet", "code"]))
+```
+
+### 25. Longest Increasing Subsequence
+**Problem:** Find length of longest increasing subsequence.
+
+**Logic:** Dynamic programming or binary search with patience sorting.
+
+```python
+def lengthOfLIS(nums):
+    if not nums:
+        return 0
+
+    dp = [1] * len(nums)
+
+    for i in range(1, len(nums)):
+        for j in range(i):
+            if nums[j] < nums[i]:
+                dp[i] = max(dp[i], dp[j] + 1)
+
+    return max(dp)
+
+# Optimized O(n log n) solution
+def lengthOfLISOptimized(nums):
+    from bisect import bisect_left
+
+    tails = []
+
+    for num in nums:
+        pos = bisect_left(tails, num)
+        if pos == len(tails):
+            tails.append(num)
+        else:
+            tails[pos] = num
+
+    return len(tails)
+
+# Test: [10,9,2,5,3,7,101,18] -> 4
+print(lengthOfLIS([10,9,2,5,3,7,101,18]))
+```
+
+### 26. Palindromic Substrings
+**Problem:** Count number of palindromic substrings.
+
+**Logic:** Expand around centers for both odd and even length palindromes.
+
+```python
+def countSubstrings(s):
+    count = 0
+
+    def expand_around_center(left, right):
+        nonlocal count
+        while left >= 0 and right < len(s) and s[left] == s[right]:
+            count += 1
+            left -= 1
+            right += 1
+
+    for i in range(len(s)):
+        expand_around_center(i, i)      # odd length
+        expand_around_center(i, i + 1)  # even length
+
+    return count
+
+# Test: "abc" -> 3, "aaa" -> 6
+print(countSubstrings("aaa"))
+```
+
+### 27. House Robber
+**Problem:** Rob houses without alerting police (no two adjacent houses).
+
+**Logic:** Dynamic programming - at each house, choose max of robbing or not robbing.
+
+```python
+def rob(nums):
+    if not nums:
+        return 0
+    if len(nums) == 1:
+        return nums[0]
+
+    prev2 = nums[0]
+    prev1 = max(nums[0], nums[1])
+
+    for i in range(2, len(nums)):
+        current = max(prev1, prev2 + nums[i])
+        prev2 = prev1
+        prev1 = current
+
+    return prev1
+
+# Test: [2,7,9,3,1] -> 12
+print(rob([2,7,9,3,1]))
+```
+
+### 28. Jump Game
+**Problem:** Determine if you can reach last index by jumping.
+
+**Logic:** Greedy approach - keep track of farthest reachable position.
+
+```python
+def canJump(nums):
+    farthest = 0
+
+    for i in range(len(nums)):
+        if i > farthest:
+            return False
+        farthest = max(farthest, i + nums[i])
+        if farthest >= len(nums) - 1:
+            return True
+
+    return True
+
+# Test: [2,3,1,1,4] -> True, [3,2,1,0,4] -> False
+print(canJump([2,3,1,1,4]))
+print(canJump([3,2,1,0,4]))
+```
+
+### 29. Combination Sum
+**Problem:** Find all combinations that sum to target (numbers can be reused).
+
+**Logic:** Backtracking with recursive exploration of choices.
+
+```python
+def combinationSum(candidates, target):
+    result = []
+
+    def backtrack(start, path, remaining):
+        if remaining == 0:
+            result.append(path[:])
+            return
+
+        for i in range(start, len(candidates)):
+            if candidates[i] <= remaining:
+                path.append(candidates[i])
+                backtrack(i, path, remaining - candidates[i])
+                path.pop()
+
+    backtrack(0, [], target)
+    return result
+
+# Test: candidates=[2,3,6,7], target=7 -> [[2,2,3],[7]]
+print(combinationSum([2,3,6,7], 7))
+```
+
+### 30. Top K Frequent Elements
+**Problem:** Find k most frequent elements in array.
+
+**Logic:** Use counter and heap, or bucket sort for optimal solution.
+
+```python
+from collections import Counter
+import heapq
+
+def topKFrequent(nums, k):
+    # Count frequencies
+    count = Counter(nums)
+
+    # Use heap to find top k
+    return heapq.nlargest(k, count.keys(), key=count.get)
+
+# Alternative bucket sort approach
+def topKFrequentBucket(nums, k):
+    count = Counter(nums)
+    buckets = [[] for _ in range(len(nums) + 1)]
+
+    # Place elements in buckets by frequency
+    for num, freq in count.items():
+        buckets[freq].append(num)
+
+    result = []
+    # Get top k from highest frequency buckets
+    for i in range(len(buckets) - 1, -1, -1):
+        for num in buckets[i]:
+            result.append(num)
+            if len(result) == k:
+                return result
+
+    return result
+
+# Test: [1,1,1,2,2,3], k=2 -> [1,2]
+print(topKFrequent([1,1,1,2,2,3], 2))
+```
+
+---
+
+## Time Complexity Summary:
+- String problems: Generally O(n) to O(n²)
+- Array problems: Range from O(n) to O(n log n)
+- List problems: Mostly O(n) with some O(n²) DP solutions
+
+## Space Complexity Summary:
+- Most solutions use O(1) to O(n) extra space
+- Some problems allow in-place solutions for O(1) space
+
+These problems cover essential patterns like two pointers, sliding window, hash maps, dynamic programming, and backtracking that are commonly tested in medium-level interviews.

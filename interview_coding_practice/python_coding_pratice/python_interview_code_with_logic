@@ -1,0 +1,202 @@
+1. Matching Braces / Valid Parentheses– Check if a string of brackets is balanced.
+Input: "()[]{}" → Output: True
+Input: "(]" → Output: False
+Input: "({[]})" → Output: True
+Logic: Use a stack. Push opening brackets, pop when closing appears. If stack is empty at the end → valid.
+---
+2. Anagram Groups– Group words that are anagrams.
+Input: ["eat","tea","tan","ate","nat","bat"]` → Output: `[["eat","tea","ate"],["tan","nat"],["bat"]]`
+Input: ["abc","cab","bac"]` → Output: `[["abc","cab","bac"]]
+Input: ["a"]` → Output: `[["a"]]
+Logic: Sort each word (signature). Group words with same sorted signature in a dictionary.
+---
+3. Unique Substring– Find the length of the longest substring without repeating characters.
+Input: "abcabcbb" → Output: 3 ("abc")
+Input: "bbbbb" → Output: 1 ("b")
+Input: "pwwkew" → Output: 3 ("wke")
+Logic: Use a sliding window  set to track seen chars. Move window when repeat found.
+---
+4. Palindrome Check– Check if a string is a palindrome, ignoring spaces/punctuation.
+Input: "A man, a plan, a canal: Panama" → Output: `True`
+Input: "racecar" → Output: `True`
+Input: "hello" → Output: `False`
+Logic:** Clean string (lowercase, alphanumeric only). Compare string with its reverse.
+
+---
+5. Longest Palindromic Substring– Find the longest palindrome inside a string.
+Input: `"babad"` → Output: `"bab"` (or `"aba"`)
+Input: `"cbbd"` → Output: `"bb"`
+Input: `"a"` → Output: `"a"`
+Logic: Expand around each character (center) to check palindrome. Keep longest.
+
+---
+
+6. String Compression– Compress consecutive characters (e.g., `aaabb → a3b2`).
+Input: `"aaabbc"` → Output: `"a3b2c1"`
+Input: `"abcd"` → Output: `"a1b1c1d1"`
+Input: `"aab"` → Output: `"a2b1"`
+Logic:Count consecutive characters, build compressed string.
+---
+
+7. Valid Anagram– Check if two strings are anagrams.
+Input: `"anagram", "nagaram"` → Output: `True`
+Input: `"rat", "car"` → Output: `False`
+Input: `"listen", "silent"` → Output: `True`
+Logic: Sort both strings or count chars using dictionary.
+---
+
+8. Roman to Integer– Convert a Roman numeral string to an integer.
+Input: `"III"` → Output: `3`
+Input: `"IV"` → Output: `4`
+Input: `"MCMXCIV"` → Output: `1994`
+Logic: Map symbols to values. If smaller number before bigger → subtract, else add.
+---
+9. String Rotation– Check if one string is a rotation of another.
+Input: "waterbottle", "erbottlewat"` → Output: `True`
+Input: "abc", "cab"` → Output: `True`
+Input: "abc", "acb"` → Output: `False`
+Logic: If `len(s1)==len(s2)` and `s2 in (s1+s1)` → True.
+---
+10. Minimum Window Substring– Find the smallest substring containing all characters of another string.
+Input: `"ADOBECODEBANC", "ABC"` → Output: `"BANC"`
+Input: `"a", "a"` → Output: `"a"`
+Input: `"a", "aa"` → Output: `""`
+Logic: Use sliding window with character counts. Expand & shrink window to cover target.
+---
+11. Two Sum– Find two numbers that add up to a target.
+Input: `[2,7,11,15], target=9` → Output: `[0,1]`
+Input: `[3,2,4], target=6` → Output: `[1,2]`
+Input: `[3,3], target=6` → Output: `[0,1]`
+
+Logic: Use a dictionary to store seen numbers and their indices.
+---
+12. Three Sum– Find triplets in an array that sum to zero.
+Input: `[-1,0,1,2,-1,-4]` → Output: `[[-1,-1,2],[-1,0,1]]`
+Input: `[0,0,0]` → Output: `[[0,0,0]]`
+Input: `[1,2,-2,-1]` → Output: `[]`
+Logic: Sort array, fix one number, use two pointers for the rest.
+
+---
+13. Merge Intervals– Merge overlapping intervals.
+Input: [[1,3],[2,6],[8,10],[15,18]] → Output: `[[1,6],[8,10],[15,18]]`
+Input: [[1,4],[4,5]] → Output: `[[1,5]]`
+Input: [[1,10],[2,3],[4,5]] → Output: `[[1,10]]`
+Logic: Sort by start. Merge if overlapping.
+---
+14. Container With Most Water– Given heights, find max water a container can hold.
+Input: `[1,8,6,2,5,4,8,3,7]` → Output: `49`
+Input: `[1,1]` → Output: `1`
+Input: `[4,3,2,1,4]` → Output: `16`
+Logic: Two pointers, move inward from ends, maximize area.
+
+---
+15. Rotate Array– Rotate a list by `k` steps.
+Input: [1,2,3,4,5,6,7], k=3` → Output: `[5,6,7,1,2,3,4]`
+Input: [-1,-100,3,99], k=2` → Output: `[3,99,-1,-100]`
+Input: [1,2], k=1` → Output: `[2,1]`
+Logic: Reverse entire array, then reverse first `k`, then reverse rest.
+---
+16. Product of Array Except Self– Return array where each element is product of all others.
+Input: `[1,2,3,4]` → Output: `[24,12,8,6]`
+Input: `[2,3,4,5]` → Output: `[60,40,30,24]`
+Input: `[1,1,1,1]` → Output: `[1,1,1,1]`
+  Logic:** Prefix product × Suffix product.
+
+---
+17. Subarray Sum Equals K– Count subarrays that sum to k.
+Input: [1,1,1], k=2` → Output: `2`
+Input: [1,2,3], k=3` → Output: `2`
+Input: [3,4,7,2,-3,1,4,2], k=7` → Output: `4`
+Logic: Use hashmap to store prefix sums. Count how many previous sums make current sum-k.
+
+---
+18. Find Missing Number– Find the missing number in range `[0, n]`.
+Input: `[3,0,1]` → Output: `2`
+Input: `[0,1]` → Output: `2`
+Input: `[9,6,4,2,3,5,7,0,1]` → Output: `8`
+Logic: XOR trick or sum formula `n*(n+1)/2 - sum(nums)`.
+---
+
+19. Majority Element– Find the element that appears more than n/2 times.
+Input: `[3,2,3]` → Output: `3`
+Input: `[2,2,1,1,1,2,2]` → Output: `2`
+Input: `[1]` → Output: `1`
+Logic: Boyer–Moore voting algorithm.
+----
+
+20. Max Subarray (Kadane’s Algorithm)– Find the contiguous subarray with maximum sum.
+Input: `[-2,1,-3,4,-1,2,1,-5,4]` → Output: `6` (subarray `[4,-1,2,1]`)
+Input: `[1]` → Output: `1`
+Input: `[5,4,-1,7,8]` → Output: `23`
+Logic: Track running max ending at each index.
+
+
+
+21. Top K Frequent Elements – Find the k most frequent numbers/words.
+Input: `[1,1,1,2,2,3], k=2` → Output: `[1,2]`
+Input: `[1], k=1` → Output: `[1]`
+Input: `[4,4,4,5,5,6], k=1` → Output: `[4]`
+
+Logic: Count with dict, use heap/quickselect to get top k.
+1. Count frequencies with a dictionary.
+2. Create an array of buckets `buckets` of size n+1, where `buckets[f]` holds elements appearing `f` times.
+3. Place each element into its frequency bucket.
+4. Iterate buckets from highest frequency down, collecting elements until you have k.
+5. Return the collected k elements.
+   **Complexity:** O(n) time average, O(n) space.
+
+22. Longest Consecutive Sequence – Find longest consecutive numbers in an unsorted array.
+Input: `[100,4,200,1,3,2]` → Output: `4 ([1,2,3,4])`
+Input: `[0,3,7,2,5,8,4,6,0,1]` → Output: `9`
+Input: `[1,2,0,1]` → Output: `3`
+
+Logic:** Use set, expand streaks.
+1. Put all numbers into a set for O(1) lookups.
+2. Initialize `best = 0`.
+3. For each number `x` in the array:
+    If `x-1` is in the set, skip (not a start).
+    Else this is a start: set `length = 1` and while `x + length` is in set, increment `length`.
+    Update `best = max(best, length)`.
+4. Return `best`.
+   Complexity: O(n) expected time, O(n) space.
+
+23. First Unique Character in String – Return the index of the first non-repeating character.
+Input: `"leetcode"` → Output: `0`
+Input: `"loveleetcode"` → Output: `2`
+Input: `"aabb"` → Output: `-1`
+
+Logic: Count chars, return first index with count=1.
+1. Count characters with a frequency dictionary.
+2. Loop through the string indices from left to right:
+   Return the first index whose char has frequency 1.
+3. If none found, return -1.
+   Complexity: O(n) time, O(1)/O(k) space (k alphabet size).
+
+24. Trapping Rain Water – Water storage between bars.  Amount of water trapped between bars.
+* Input: `[0,1,0,2,1,0,1,3,2,1,2,1]` → Output: `6`
+* Input: `[4,2,0,3,2,5]` → Output: `9`
+* Input: `[2,0,2]` → Output: `2`
+
+Logic: Use two pointers and track max left/right walls.
+1. Use two pointers l = 0, r = n-1; `left_max = 0, right_max = 0; water = 0.
+2. While `l < r`:
+    If height[l] < height[r]:
+        * If `height[l] >= left_max`, set `left_max = height[l]`.
+        * Else add `left_max - height[l]` to `water`.
+        * Move `l` right.
+   * Else:
+     * If `height[r] >= right_max`, set `right_max = height[r]`.
+     * Else add `right_max - height[r]` to `water`.
+     * Move `r` left.
+3. Return `water`.
+   Complexity: O(n) time, O(1) space.
+
+25. Find the second largest number in a list
+input: nums = [4, 4, 4, 4, 3] output: 3
+input: nums = [5, 2, 9, 1, 7] output: 7
+input: nums = [1, 2] output: 1
+logic:
+# - Initialize the first and second largest with very minimum value
+# - Loop though each element in the list and check if the current number > first
+# - If its - update the first with new and second with first number
+# - if it between first and second update the second number only

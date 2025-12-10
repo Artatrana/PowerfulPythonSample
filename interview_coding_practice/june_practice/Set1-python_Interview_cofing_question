@@ -1,0 +1,180 @@
+
+Problem - 1:Longest Substring Without Repeating Characters**
+Given a string `s`, find the length of the longest substring without repeating characters.
+**Example:**
+Input: `"abcabcbb"` → Output: `3` (`"abc"`)
+Logic:
+Slide a window though the string, keep track of character you have seen so far.
+if you see a dublicate, move the start of the window ahead to skip the repeat.
+keep updating the longest length you found so far
+---
+Problem - 2: **Group Anagrams**
+Given a list of strings, group the anagrams together.
+**Example:**
+Input: `["eat", "tea", "tan", "ate", "nat", "bat"]`
+Output: `[["eat","tea","ate"], ["tan","nat"], ["bat"]]`
+
+---
+Problem - 3: **Two Sum**
+Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.
+**Example:**
+Input: `nums = [2,7,11,15], target = 9`
+Output: `[0,1]`
+
+---
+Problem - 4: **Longest Palindromic Substring**
+Given a string `s`, return the longest palindromic substring.
+**Example:**
+Input: `"babad"` → Output: `"bab"` or `"aba"`
+
+---
+Problem - 5: **Valid Parentheses**
+Given a string containing just the characters `(`, `)`, `{`, `}`, `[` and `]`, determine if the input string is valid (properly closed and nested).
+**Example:**
+Input: `"()[]{}"` → Output: `True`
+Input: `"(]"` → Output: `False`
+
+---
+Problem - 6 :  **Top K Frequent Elements**
+Given an integer array `nums` and an integer `k`, return the `k` most frequent elements.
+**Example:**
+Input: `nums = [1,1,1,2,2,3], k = 2`
+Output: `[1,2]`
+
+---
+
+Problem - 7:Product of Array Except Self**
+Given an array `nums`, return an array `output` such that `output[i]` is the product of all elements except `nums[i]`.
+**Example:**
+Input: `[1,2,3,4]` → Output: `[24,12,8,6]`
+
+---
+
+Problem - 8:**Longest Consecutive Sequence**
+Given an unsorted array of integers, find the length of the longest consecutive elements sequence.
+**Example:**
+Input: `[100, 4, 200, 1, 3, 2]` → Output: `4` (sequence: `[1,2,3,4]`)
+
+---
+Problem - 9 :**3Sum
+Given an integer array `nums`, find all unique triplets `[nums[i], nums[j], nums[k]]` such that they sum to zero.
+**Example:**
+Input: `[-1,0,1,2,-1,-4]`
+Output: `[[-1,-1,2], [-1,0,1]]`
+
+---
+Problem - 10:**
+Given two strings `s` and `t`, return the minimum window in `s` which contains all the characters in `t`.
+**Example:**
+Input: `s = "ADOBECODEBANC", t = "ABC"`
+Output: `"BANC"`
+
+---
+
+Problem - 11:** Merge Intervals
+Merge Intervals
+Given a list of intervals, merge all overlapping intervals.
+Input:  [[1,3],[2,6],[8,10],[15,18]]
+Output: [[1,6],[8,10],[15,18]]
+Logic: This is a Sort + merge overlapping application
+1. sort all the interval by their start time
+2. Start with first interval, then check the next one
+    - if they overlap, merge them into one bigger interval - check if 2nd value of last interval is >= 1st of the next interval
+    - if they don't keep them separate
+3. Continue until done
+
+Problem - 12:** Subarray Sum Equals K
+Question: Count how many continuous subarrays sum to k.
+Input: nums = [1,1,1], k = 2
+Output: 2  # ([1,1] at index 0–1 and index 1–2)
+Logic: Running sum + hashmap
+1- Use a running sum to keep track of the total so far.
+2. Use a dictionary to count how often each sum has appeared
+3. For each new element, check if ( current sum - k ) has appeared befor - if yes then you found a sub-array
+
+
+Problem - 13:** Find First Missing Positive
+Question: Find the smallest missing positive integer.
+Example:
+Input: [3,4,-1,1]
+Output: 2
+Logic:
+1.
+
+Problem - 14:** Rotate Image (Matrix)
+Question: Rotate an N x N matrix 90° clockwise in place.
+Example:
+Input:  [[1,2,3],
+         [4,5,6],
+         [7,8,9]]
+Output: [[7,4,1],
+         [8,5,2],
+         [9,6,3]]
+Logic:
+* imagine a square grid, like a picture on a paper.
+* To rotate it 90° clockwise, you can do it in two simple steps:
+1. Transpose the matrix:
+    - swap row into column
+    - for every cell(i,j), swap it with (j,i)
+2. Reverse each rows
+    - Flip each row left to right
+
+Problem - 15:** Word Break
+Question: Can the string be segmented into dictionary words?
+Example:
+Input: s = "leetcode", wordDict = ["leet","code"]
+Output: True
+Logic:
+* Imagine you have a sentence with no space, like "leetcode".
+* you also have a list of valid words, like ["leet", "code"].
+* You want to check if you can bereak the sentence into words only from the dictionary
+* To do this, you check each possible way to split the sentence:
+    - For each postition in the string, check if the part before it is valid and if remaining part can also split
+* Use dynamic programming to avoid repeating work:
+    - make a dp list where dp[i] means "Can I split the first i letters?”
+    - Start with dp[0] = True (empty string can always be split).
+    - For each end position i, check all possible start position j before i
+    - if dp[j] is True and dp[j:i] is a word in the dictionary then dp[i] id true
+
+
+
+Problem - 16: **Validate Binary Search Tree
+Question: Check if a binary tree is a valid BST.
+Example:
+nput: [2,1,3]
+Output: True
+Input: [5,1,4,null,null,3,6]
+Output: False
+Logic:
+
+
+Problem - 16: **Find Peak Element
+Question: Find a peak element (greater than neighbors).
+Example:
+Input: [1,2,3,1]
+Output: 2  # Index of peak element 3
+Logic:
+1. A peak is an element greater than its neighbour
+2. Use binary search
+    - if middle is less than its right neighbour, search right
+    - Else search left
+
+
+Problem - 17: **Product of Array Except Self
+Question: Return array where each element is the product of all other elements.
+Example:
+Input: [1,2,3,4]
+Output: [24,12,8,6]
+Logic: Two-pass prefix & suffix products
+1. Make a result array
+2. for each element multiply all elements to its left and right
+3. Do it in two passes( left product and right product without using division)
+
+Problem - 18: ** Three sum
+Given an array of integers nums, find all unique triplets (a, b, c) such that:
+Logic:
+- First sort the array to avoid the duplicate number
+- Fixed the first number (a) and use two pointers to find pairs ( b and c) such that their sum is -a
+- Skip duplicates for all three numbers to unsure unique truples.
+
+
