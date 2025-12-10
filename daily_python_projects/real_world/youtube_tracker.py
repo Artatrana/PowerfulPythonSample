@@ -8,7 +8,7 @@ from googleapiclient.discovery import build
 BROWSER_HISTORY_PATH = os.path.expanduser(
     "~/Library/Application Support/Google/Chrome/Default/History"
 )  # Mac Chrome path
-API_KEY = "AIzaSyDiEFUbtaR2-PeLpk1-n7sc-tyTfKo5sXg"
+# API_KEY = ""
 youtube = build("youtube", "v3", developerKey=API_KEY)
 
 
