@@ -1,8 +1,8 @@
-import pyspark_sandbox         # works
-from pyspark_sandbox.sql import SparkSession   # ModuleNotFoundError
+import pyspark         # works
+from pyspark.sql import SparkSession   # ModuleNotFoundError
 
-# import pyspark_sandbox
-# import os
-# print(os.listdir(pyspark_sandbox.__path__[0]))
+import pyspark
+import os
+print(os.listdir(pyspark.__path__[0]))
 
 

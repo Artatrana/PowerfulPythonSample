@@ -1,48 +1,34 @@
+#https://docs.greatexpectations.io/docs/core/introduction/try_gx
+#Version for demo 1.0.0
+
 import great_expectations as gx
 import pandas as pd
 
-# Sample DataFrame
-df = pd.DataFrame({
-    "user_id": [1, 2, 3, None],
-    "age": [25, 30, -5, 40]
-})
+# 2- Download and read the sample data into a Pandas DataFrame.
+df = pd.read_csv("https://raw.githubusercontent.com/great-expectations/gx_tutorials/main/data/yellow_tripdata_sample_2019-01.csv")
 
-# 1. Create a Great Expectations context (in-memory)
+#3- A Data Context object serves as the entrypoint for interacting with GX components.
 context = gx.get_context()
 
-# 2. Create an in-memory datasource
-context.add_datasource(
-    name="my_pandas_datasource",
-    class_name="Datasource",
-    execution_engine={
-        "class_name": "PandasExecutionEngine"
-    },
-    data_connectors={
-        "default_runtime_data_connector_name": {
-            "class_name": "RuntimeDataConnector",
-            "batch_identifiers": ["default_identifier_name"]
-        }
-    }
-)
+#4- Connect to data and create a Batch.
+# Define a data source, Data assets, Batch definition and Batch. The pandas DataFrame is provided to Batch definition
+# at runtime to create the batch
 
-# 3. Create a batch from the DataFrame
-batch_request = gx.core.batch.BatchRequest(
-    datasource_name="my_pandas_datasource",
-    data_connector_name="default_runtime_data_connector_name",
-    data_asset_name="my_dataframe",
-    runtime_parameters={"batch_data": df},
-    batch_identifiers={"default_identifier_name": "batch1"},
-)
+data_source = context.data_sources.add_pandas("pandas")
+data_asset = data_source.add_dataframe_asset(name="pd dataframe asset")
 
-# 4. Get a validator
-validator = context.get_validator(batch_request=batch_request)
+batch_definition = data_asset.add_batch_definition_whole_dataframe("batch definition")
+batch = batch_definition.get_batch(batch_parameters={"dataframe": df})
 
-# 5. Add expectations
-validator.expect_column_values_to_not_be_null("user_id")
-validator.expect_column_values_to_be_between("age", min_value=0, max_value=120)
+#Create an Expectation.
+# Expections are fundamental component of GX. They allow you to explicitly define the state to which your data should conform.
+# Run following code to define an Expectation that the content of the column passenger_count consist of values ranging from 2 to 6:
 
-# 6. Validate the data
-results = validator.validate()
-print(results)
+expectation = gx.expectations.ExpectColumnValuesToBeBetween(column="passenger_count", min_value=2, max_value=6)
+
+#Run and get the results!
+validation_result = batch.validate(expectation)
+
+print(validation_result)
 
 
