@@ -1,0 +1,11 @@
+order_id,customer_id,customer_name,region,product,quantity,amount,order_date
+1001,C001,Alice,US,Laptop,1,1200.00,2025-01-02
+1002,C002,Bob,EU,Phone,2,1600.00,2025-01-03
+1003,C003,Charlie,US,Tablet,3,900.00,2025-01-03
+1004,C004,David,APAC,Laptop,1,1250.00,2025-01-04
+1005,C001,Alice,US,Phone,1,800.00,2025-01-05
+1006,C005,Eva,EU,Headphones,4,600.00,2025-01-05
+1007,C006,Frank,US,Monitor,2,700.00,2025-01-06
+1008,C003,Charlie,US,Laptop,1,1150.00,2025-01-07
+1009,C007,Grace,APAC,Tablet,2,600.00,2025-01-07
+1010,C002,Bob,EU,Monitor,1,350.00,2025-01-08

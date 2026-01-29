@@ -61,20 +61,47 @@
 # 2. I/O-bound task example (async is effective)
 import asyncio
 import time
+from time import sleep
 
-async def fetch_data(x):
-    print(f"Fetching data {x}...")
-    await asyncio.sleep(2)  # Simulate I/O wait
-    print(f"Finished fetching data {x}")
-    return x * 10
 
-async def main():
-    tasks = [fetch_data(i) for i in range(5)]
-    results = await asyncio.gather(*tasks)
-    print("I/O-bound results:", results)
+# async def fetch_data(x):
+#     print(f"Fetching data {x}...")
+#     await asyncio.sleep(2)  # Simulate I/O wait
+#     print(f"Finished fetching data {x}")
+#     return x * 10
+#
+# async def main():
+#     tasks = [fetch_data(i) for i in range(5)]
+#     results = await asyncio.gather(*tasks)
+#     print("I/O-bound results:", results)
+#
+# start = time.time()
+# asyncio.run(main())
+# end = time.time()
+# print("Time taken:", end - start)
 
-start = time.time()
-asyncio.run(main())
-end = time.time()
-print("Time taken:", end - start)
+# async def test_async():
+#     print("This starting of the function")
+#     await asyncio.sleep(2)
+#     print("This is end of the program")
+#
+# print(type(test_async()))
+# #asyncio.run(test_async())
+
+async def test2():
+    print("This is the statring of the function2 ")
+    await asyncio.sleep(3)
+    print("This is after the wait of async")
+
+def test_normal_function():
+    print("This is normal function testing")
+    print("This will show that this function is working")
+    time.sleep(1)
+    print("Finish - The normal function complets!")
+
+asyncio.run(test2())
+test_normal_function()
+
+
+
 
