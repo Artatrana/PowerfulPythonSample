@@ -1,10 +1,10 @@
 # Imagine Qualcomm is analyzing signal strength values in an array, and they want to detect
 # peaks (values greater than their neighbors).
-
-
+#
+#
 # signal = [1, 3, 2, 4, 1, 5, 3]
 # print(find_peaks(signal))  # Expected output: [3, 4, 5]
-
+#
 # Logic :
 #     - For 1st and last values they have only one neighbours rest all have two neighbours
 #     - First element: compare with next element.

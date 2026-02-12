@@ -1,9 +1,15 @@
 # Matching Braces / Valid Parentheses– Check if a string of brackets is balanced.
 # Logic:
-# Make a map of closing bracket to opening bracket
-# Create a empty list to store the encountered braces - we will store only opening braces
-# And if we encounter any Closing braces - we will remove braces from the list as that shoud be matching left brace
-# with most recent closing braces
+# * Create a mapping of closing brackets to their corresponding opening brackets
+# * Use a stack ( list) to keep track of opening brackets encountered
+# * Iterate through each character in the string
+#   * If it is an opening bracket, push it onto the stack
+#   * if it is a closing bracket:
+#       * if the stack is empty, return False
+#       * Pop the last opening bracket from the stack
+#       * If it does not match the expected opening bracket, return False
+# After processing all the characters, return True only if stack is empty
+
 # loop though left to write :
 #   if we encounter opening braces - then add it to the input_braces list
 #   Else: if we encounter closing braces -

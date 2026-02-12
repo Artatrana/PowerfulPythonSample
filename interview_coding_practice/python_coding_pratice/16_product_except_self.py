@@ -37,5 +37,23 @@ def product_except_self(nums):
 assert (product_except_self([1,2,3,4])) ==[24,12,8,6]
 assert (product_except_self([2,3,4,5])) ==[60,40,30,24]
 assert (product_except_self([1,1,1,1])) ==[1,1,1,1]
-print("ALl asserts passed")
+#print("ALl asserts passed")
 
+def product_except_self2(nums):
+    result = [1] * len(nums)
+    prefix = 1
+    for i in range(len(nums)):
+        result[i] *= prefix
+        prefix *= nums[i]
+
+    postfix = 1
+    for i in range(len(nums)-1,-1, -1):
+        result[i] *= postfix
+        postfix *= nums[i]
+
+    return result
+
+assert (product_except_self2([1,2,3,4])) ==[24,12,8,6]
+assert (product_except_self2([2,3,4,5])) ==[60,40,30,24]
+assert (product_except_self2([1,1,1,1])) ==[1,1,1,1]
+print("ALl asserts passed")

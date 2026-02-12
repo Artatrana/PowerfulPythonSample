@@ -3,6 +3,7 @@
 # *Input: `[1]` → Output: `1`
 # *Input: `[5, 4, -1, 7, 8]` → Output: `23`
 # Logic: Track running max ending at each index.
+
 def max_subarray(nums):
     current_sum = nums[0]  # start with first element
     max_sum = nums[0]

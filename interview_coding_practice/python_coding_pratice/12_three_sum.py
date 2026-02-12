@@ -9,7 +9,7 @@
 #      step 3: for each iteration of number
 #         set Left , right and use two pinter for the rest
 #         need to be check if there is consecutive element
-#         Also need to check for the same number occure consucatively for left and right
+#         Also need to check for the same number occur consecutively for left and right
 
 
 def three_sum(lst_unsorted):

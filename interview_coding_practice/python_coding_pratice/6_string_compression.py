@@ -1,15 +1,23 @@
 # 6. String Compression– Compress consecutive characters (e.g., `aaabb → a3b2`)
-# logic : imagine you are reading the string left to right like a cahsier counting items in a row:
-# 1. Start with the first item(character)
-#   * Keep a counter in your hand
-# 2. Keep looking at the next item
-#  * if its same - increase the counter
-#  * if its different -
-#     * write down previos item + count
-#     * Rest counter = 1 (because new item starts)
-# 3. At the end, don’t forget to write the last group!
+# logic : imagine you are reading the string left to right like a cashier counting items in a row:
+# Step
+# 1. Start with the first character in the string.
+#   * Keep a counter to track how many times the current character appears consecutively.
+#   * Initialize the counter to 1
+# 2. Move to the next character and continuing scanning:
+# * If the current character is same as the previous one:
+#       * Increase the counter
+# * If the current character is different:
+#       * Append the previous character and its count to the result
+#       * Reset the counter to 1 for the new character
+# 3. Continue this process until you reach till end of the sting
+# 4. After finish the loop:
+#    * Append the last character and its count to the result ( since it won't be written inside the loop)
+# 5. Return the compressed string
+
 
 def compress_string(s):
+    # Edge Cases
     if not s:
         return ""
     if len(s) == 1:

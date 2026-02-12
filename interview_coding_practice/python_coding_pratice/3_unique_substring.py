@@ -32,3 +32,15 @@ def length_of_longest_substring(s):
 
 
 print(length_of_longest_substring("abcabcbb")) # 3
+
+def length_of_longest_string2(s):
+    char_seen = {}
+    start = max_length = 0
+
+    for index, char in enumerate(s):
+        if char in char_seen and index > char_seen[char]:
+            start = char_seen[char] + 1
+        char_seen[char] = index
+        max_length = max(max_length, index - start + 1)
+
+    return max_length

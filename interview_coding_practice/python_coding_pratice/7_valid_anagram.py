@@ -18,7 +18,7 @@ def is_anagram(s: str, t: str) -> bool:
         if chr not in char_count:
             return False
         char_count[chr] -=1
-        if char_count[chr] <0: # we are not checking >0 because we already checked the length- any mismatch will resulted a negative number counut
+        if char_count[chr] <0: # we are not checking >0 because we already checked the length- any mismatch will resulted a negative number count
             return  False
 
     return True

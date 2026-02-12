@@ -4,8 +4,8 @@
 # Input: `"a", "aa"` → Output: `""`
 # Logic: Use sliding window with character counts. Expand & shrink window to cover target.
 
-# Step 1 - Check if both string are valid, I mean no Null and if so, check if length of traget string
-#         shoud not exceed length of source string
+# Step 1 - Check if both string are valid, I mean no Null and if so, check if length of target string
+#         should not exceed length of source string
 # Step 2 - Create a dictionary to store no of characters in the target string
 # Step 3 - Add another dictionary currently_have to track how many of each character in the current window
 # Step 4 - Use two pointer L and R to slide a window over source
@@ -14,6 +14,7 @@
 # Step 7 - Keep track of best window seen
 
 def min_window(source: str, target: str) -> str:
+
     #Edge cases
     if not source and not target and len(target) > len(source):
         return ""
@@ -64,15 +65,15 @@ def min_window(source: str, target: str) -> str:
 # print(min_window("aaflslflsldkalskaaa", "aaa"))  # → "aaa"
 
 # Logic:
-# step 1 : check if source and traget string are null and len(target) > len(source) - > Return Null
-# step 2 : create dicionary of "need" ( character and count) by traversing through the target string
+# step 1 : check if source and target string are null and len(target) > len(source) - > Return Null
+# step 2 : create dictionary of "need" ( character and count) by traversing through the target string
 # step 3 : Create another dictionary "have" to add char and its count by traversing thought the source string
 #          store count of character which are there in the need
 #          Use two pointer technique
 #          Use Left and Right
-# Step 4: use R - right to traverse through souce string
+# Step 4: use R - right to traverse through source string
 #     step 5: if we have all the character count from the source. Track the best_length and best_start
-#     step 6: Shirnk L from left to find out best start for each r.
+#     step 6: Shrink L from left to find out best start for each r.
 
 def min_window2(source: str, target: str) -> str:
     if not source  and not target and len(target) > len(source):

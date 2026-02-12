@@ -6,7 +6,7 @@
 
 # Logic:
 # Step 1: Initialize running_sum as 0.
-#         - Initialize a dicitonary to store sum and it occurance
+#         - Initialize a dictionary to store sum and its occurrence
 # Step 2: For each element in the list of number:
 #         - Add the number to running_total
 #         - Now deduct the target and check if there is sum already OtherRevInfo
@@ -18,9 +18,10 @@ def subarray_sum(nums, k):
         running_total = 0
         frequncy_count = {0:1}
         for num in nums:
-                running_total += num
 
+                running_total += num
                 reminder = running_total - k
+
                 if reminder in frequncy_count:
                         count += frequncy_count[reminder]
 
