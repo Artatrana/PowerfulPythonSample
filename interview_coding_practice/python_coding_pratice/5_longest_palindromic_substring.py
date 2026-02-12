@@ -26,10 +26,11 @@ from fontTools.misc.cython import returns
 
 
 def longest_palindrome2(s):
+    # Edge case if s is Null return ""
     if not s:
         return ""
-
     start, end = 0, 0
+
     def expand_from_center(left, right):
         while left >= 0  and right < len(s) and s[left] == s[right]:
             left -= 1

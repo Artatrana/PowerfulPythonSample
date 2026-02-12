@@ -4,8 +4,6 @@
 import  logging
 import random
 
-from advance.decoratorexample1 import log_execution_time_and_call_count
-
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s - %(levelname)s - %(message)s"

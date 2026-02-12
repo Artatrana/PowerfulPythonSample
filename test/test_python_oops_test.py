@@ -1,5 +1,5 @@
 import unittest
-from other_practice.python_oops_test import *
+from python_core_implemetation_practice.other_practice.python_oops_test import *
 
 class TestLibraryManagementSystem(unittest.TestCase):
     def setUp(self):
